@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main() {
+    int orderStatus;
+
+    printf("Zomato Order Tracking System\n");
+    printf("Enter the number corresponding to the order status:\n");
+    printf("1. Order Placed\n");
+    printf("2. Preparing Food\n");
+    printf("3. Out for Delivery\n");
+    printf("4. Delivered\n");
+
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &orderStatus);
+
+    switch (orderStatus) {
+        case 1:
+            printf("Your order has been placed.\n");
+            break;
+        case 2:
+            printf("Your food is being prepared.\n");
+            break;
+        case 3:
+            printf("Your order is out for delivery.\n");
+            break;
+        case 4:
+            printf("Your order has been delivered.\n");
+            break;
+        default:
+            printf("Invalid choice! Please enter a number between 1 and 4.\n");
+            break;
+    }
+
+    return 0;
+}
