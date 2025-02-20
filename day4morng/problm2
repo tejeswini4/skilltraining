@@ -1,0 +1,81 @@
+#include<stdio.h>
+struct Fiction_t {
+    char title[250];
+    char author[125];
+    float price;
+};
+typedef struct Fiction_t Fiction;
+
+struct NonFiction_t {
+    char title[250];
+    char subject[500];
+    float price;
+};
+typedef struct NonFiction_t  NonFiction;
+
+union BookType_t {
+    Fiction fiction;
+    NonFiction nonfiction;
+};
+
+typedef union BookType_t BookType;
+
+struct Book_t {
+     int type;
+     BookType booktype;
+};
+
+typedef struct Book_t Book;
+
+Book books[1000];
+int bookCount;
+
+void addBooks();
+void diaplayBooks();
+
+int main() {
+    addBooks();
+    diaplayBooks();
+    return 0;
+}
+
+void addBooks() {
+    printtf("enter number of books:");
+    scanf("%d", &bookCount);
+
+    for(int I = 0; I < bookCount; I++) {
+        printf("type of book(1-Fiction, 2-non Fiction):");
+        scanf("%d", &books[I].type);
+
+        switch(books[I].type) {
+            case 1 : {
+               printf("Enter Fiction Book Details(Title, Author, Price):");
+               scanf("%s%s%f", books[I].booktype.fiction.title,
+                books[I].booktype.fiction.author,
+                   &books[I].booktype.fiction.price);
+            } break;
+            case 2 : {
+                 printf("Enter Non Fiction Book Deatils(Title, Subject, Price):");
+                 scanf("%s%s%f", books[I].booktype.fiction.title,
+                 books[I].booktype.fiction.author,
+               &books[I].booktype.fiction.price);
+            } break;  
+        }
+    } 
+}
+void displayBooks() {
+    for(int I = 0; I < bookCount; I++) {
+        switch(books[I].type) {
+            case 1 : {
+                printf("fiction book: %s, Author: %s, Price:$%.2f",books[I].booktype.fiction.title,
+                    books[I].booktype.fiction.author,
+                       books[I].booktype.fiction.price);
+            } break;
+            case 2 : {
+                printf("Non-Fiction Book: %s, Subject: %s,Price: $%.2f", books[I].booktype.fiction.title,
+                    books[I].booktype.fiction.author,
+                  &books[I].booktype.fiction.price);
+            } break;
+        }
+    }
+}
